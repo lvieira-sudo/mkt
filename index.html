@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Analytics 2025-2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <h1>Dashboard Marketing </h1>
+            <p>Análise Comparativa de Performance de Leads 2025-2026</p>
+        </div>
+
+        <div class="year-toggle">
+            <div class="toggle-container">
+                <button class="toggle-btn active" onclick="toggleYear('2025')">2025</button>
+                <button class="toggle-btn" onclick="toggleYear('2026')">2026</button>
+                <button class="toggle-btn" onclick="toggleYear('comparison')">Comparação</button>
+            </div>
+        </div>
+
+        <div class="filter-controls">
+            <button class="filter-btn active" onclick="filterPeriod('all')">Todos os Períodos</button>
+            <button class="filter-btn" onclick="filterPeriod('q1')">Q1</button>
+            <button class="filter-btn" onclick="filterPeriod('q2')">Q2</button>
+            <button class="filter-btn" onclick="filterPeriod('q3')">Q3</button>
+            <button class="filter-btn" onclick="filterPeriod('q4')">Q4</button>
+        </div>
+
+        <div class="quarter-legend">
+            <div class="legend-container">
+                <div class="legend-title">📅 Legenda dos Trimestres</div>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <span class="legend-badge q1">Q1</span>
+                        <span class="legend-text">1º Trimestre (Semanas 1-11)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-badge q2">Q2</span>
+                        <span class="legend-text">2º Trimestre (Semanas 12-22)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-badge q3">Q3</span>
+                        <span class="legend-text">3º Trimestre (Semanas 23-33)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-badge q4">Q4</span>
+                        <span class="legend-text">4º Trimestre (Semanas 34-43)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-title">Total de Leads</div>
+                <div class="metric-value" id="totalLeads">4,391</div>
+                <div class="metric-change neutral">
+                    <span>📈</span> Base 2025
+                </div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">Leads Qualificados</div>
+                <div class="metric-value" id="qualifiedLeads">871</div>
+                <div class="metric-change negative">
+                    <span>📉</span> -56% vs Meta (1,980)
+                </div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">Taxa de Qualificação</div>
+                <div class="metric-value" id="qualificationRate">44%</div>
+                <div class="metric-change negative">
+                    <span>⚠️</span> Abaixo da meta
+                </div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">Entrevistas Realizadas</div>
+                <div class="metric-value" id="interviews">917</div>
+                <div class="metric-change negative">
+                    <span>📉</span> -67% vs Meta (2,770)
+                </div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">Matrículas 2025</div>
+                <div class="metric-value" id="enrollments2025">15</div>
+                <div class="metric-change negative">
+                    <span>📉</span> -56% vs Meta (34)
+                </div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">Matrículas 2026</div>
+                <div class="metric-value" id="enrollments2026">391</div>
+                <div class="metric-change positive">
+                    <span>🎯</span> 98% da Meta (400)
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-container">
+                <div class="chart-title">📈 Evolução Semanal de Performance</div>
+                <canvas id="weeklyChart" width="800" height="400"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">🎯 Funil de Conversão</div>
+                <canvas id="funnelChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+
+        <div class="funnel-container">
+            <div class="chart-container">
+                <div class="chart-title">📊 Performance por Trimestre</div>
+                <canvas id="quarterlyChart" width="400" height="300"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">🔄 Funil de Conversão</div>
+                <canvas id="conversionChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="chart-title">📋 Dados Detalhados por Mês</div>
+            <div class="loading-spinner" id="loadingSpinner"></div>
+            <table class="data-table" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Mês</th>
+                        <th>Período</th>
+                        <th>Leads Realizados</th>
+                        <th>Meta LQ</th>
+                        <th>LQ Realizados</th>
+                        <th>% Qualificação</th>
+                        <th>Entrevistas</th>
+                        <th>Matrículas 2025</th>
+                        <th>Matrículas 2026</th>
+                        <th>Performance</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>
