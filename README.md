@@ -1,75 +1,65 @@
-# Dashboard de Inadimplência
+# Marketing Dashboard
 
-Painel estático em HTML/CSS/JS que compara inadimplência e recuperação de crédito dos anos 2024 e 2025.
+Painel estático em HTML/CSS/JS que apresenta indicadores chave de marketing, como tráfego, conversões, engajamento e ROI.
 
 ## Estrutura do Projeto
 
-```
+```bash
 seu-repo/
-├── index.html   # Marcações principais do dashboard
+├── index.html   # Layout principal do dashboard com sections para cada métrica
 ├── style.css    # Estilos, animações e responsividade
-└── script.js    # Lógica de criação e atualização dos gráficos
+└── script.js    # Dados de exemplo e configurações dos gráficos
 ```
 
 ## Tecnologias Utilizadas
 
-* HTML5
-* CSS3 (incluindo animações e gradientes)
-* JavaScript (ES6+)
-* [Chart.js](https://www.chartjs.org/) via CDN
-* [Tailwind CSS](https://tailwindcss.com/) via CDN
+* HTML5 sem frameworks adicionais (exceto CDN)
+* CSS3 (incluindo gradientes, animações e responsividade via Tailwind)
+* JavaScript (ES6+) para lógica de gráficos e interatividade
+* [Chart.js](https://www.chartjs.org/) (via CDN) para visualizações
+* [Tailwind CSS](https://tailwindcss.com/) (via CDN) para utilitários de estilo
 * Fonte "Inter" do Google Fonts
-* (Opcional) Script de challenge do Cloudflare
 
 ## Como Executar Localmente
 
 1. Clone este repositório:
 
    ```bash
+   git clone https://github.com/SEU_USUARIO/seu-repo.git
    ```
-
-git clone [https://github.com/SEU\_USUARIO/seu-repo.git](https://github.com/SEU_USUARIO/seu-repo.git)
-
-````
 2. Acesse a pasta do projeto:
-   ```bash
-cd seu-repo
-````
-
-3. Abra o `index.html` diretamente no navegador ou use um servidor local:
 
    ```bash
+   cd seu-repo
    ```
+3. Abra o arquivo `index.html` diretamente no navegador ou sirva com um servidor local:
 
-npx http-server .
-
-```
-4. O dashboard estará disponível em `http://localhost:8080` (padrão do http-server).
+   ```bash
+   npx http-server .
+   ```
+4. Visite `http://localhost:8080` para ver o dashboard.
 
 ## Deploy com GitHub Pages
 
-1. Faça commit e push para a branch `main`.
-2. No GitHub, vá em **Settings > Pages**.
-3. Em **Source**, selecione **main** / **Root**.
-4. Clique em **Save**. Em poucos minutos seu site estará em:
-```
+1. Faça commit e push na branch `main`.
+2. No GitHub, acesse **Settings > Pages**.
+3. Em **Source**, selecione **main** / **Root** e salve.
+4. Aguarde alguns minutos e abra:
 
-[https://SEU\_USUARIO.github.io/seu-repo/](https://SEU_USUARIO.github.io/seu-repo/)
-
-```
+   ```
+   https://SEU_USUARIO.github.io/seu-repo/
+   ```
 
 ## Personalização
 
-- Atualize os dados em `script.js` conforme suas métricas reais.
-- Modifique cores e fontes em `style.css` para alinhar à identidade visual.
-- Adicione ou remova elementos no `index.html` conforme a necessidade.
+* **Dados:** edite os arrays e objetos em `script.js` com suas métricas reais (ex.: visitas, leads, taxa de conversão).
+* **Estilos:** ajuste cores, fontes e espaçamentos em `style.css` ou via classes do Tailwind.
+* **Layout:** modifique o HTML em `index.html` para adicionar/remover seções de métricas.
 
 ## Contribuição
 
-Pull requests são bem-vindas! Para mudanças maiores, abra uma issue antes para discutirmos.
+Pull requests são bem-vindas! Para mudanças significativas, abra uma issue primeiro para alinharmos requisitos.
 
 ## Licença
 
-Este projeto está licenciado sob a licença MIT. Sinta-se à vontade para usar e adaptar.
-
-```
+Este projeto está sob a [MIT License](https://opensource.org/licenses/MIT). Sinta-se livre para usar, modificar e distribuir.
